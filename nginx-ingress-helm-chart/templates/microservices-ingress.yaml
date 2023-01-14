@@ -1,0 +1,32 @@
+# Source: webapp-helm-chart/templates/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: microservices-ingress
+  namespace: microservices
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: kubees.api.playlist.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: playlist-api
+                port:
+                  number: 80
+    - host: kubees.api.videos.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: videos-api
+                port:
+                  number: 10010
