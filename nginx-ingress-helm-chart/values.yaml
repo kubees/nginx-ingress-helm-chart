@@ -1,5 +1,9 @@
 ingress-nginx:
   controller:
+    image:
+      registry: docker.io
+      image: bitnami/nginx-ingress-controller
+      tag: 1.3.0-debian-11-r8
     podAnnotations:
       "prometheus.io/scrape": true
       "prometheus.io/port": 10254
